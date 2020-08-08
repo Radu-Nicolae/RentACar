@@ -16,6 +16,6 @@ public class Main {
 
         App rentACar = new App();
         rentACar.login(accounts);
-        rentACar.chooseYourOption(cars);
+        App.chooseYourOption(cars);
     }
 }

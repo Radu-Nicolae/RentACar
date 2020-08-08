@@ -45,13 +45,26 @@ public class DataSource {
         return cars;
     }
 
+
+    public static List<String> getCarMakes(){
+        List<String> carMakes = new ArrayList<>();
+
+        carMakes.add("BMW");
+        carMakes.add("Dacia");
+
+
+        return carMakes;
+    }
+
     public static List<Accounts> getUserList(){
         //returns user list
         List<Accounts> accounts = new ArrayList<>();
 
+        Accounts admin0 = new Admin("Radu", "222"); accounts.add(admin0);
         Accounts admin1 = new Admin("Bobita", "1234"); accounts.add(admin1);
         Accounts admin2 = new Admin("Adelina", "22415"); accounts.add(admin2);
 
+        Accounts user0 = new User("Radu", "222"); accounts.add(user0);
         Accounts user1 = new User("Marcel", "MRC"); accounts.add(user1);
         Accounts user2 = new User("Vlad", "VLD"); accounts.add(user2);
         Accounts user3 = new User("Adela", "ADL"); accounts.add(user3);
@@ -63,7 +76,6 @@ public class DataSource {
 
         return accounts;
     }
-
 
 
 }

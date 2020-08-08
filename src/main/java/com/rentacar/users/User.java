@@ -7,5 +7,4 @@ public class User extends Accounts{
     }
 
     private boolean isAdmin = false;
-
 }

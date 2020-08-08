@@ -4,6 +4,7 @@ import com.rentacar.cars.Car;
 import com.rentacar.users.Accounts;
 import com.rentacar.users.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,12 +35,12 @@ public class App {
                                 passwordInput.equals(passwordList)) {
                             System.out.println("Login successful!");
                             isLoginUnsuccessful = false;
-                            break;  //10:30 pm done
+                            break;
                         }
                     }
                 }
 
-                if (isLoginUnsuccessful){
+                if (isLoginUnsuccessful) {
                     System.out.println("Wrong username or password! Please enter again.");
                     System.out.println("");
                 }
@@ -69,7 +70,7 @@ public class App {
 
     }
 
-    public static List<Accounts> createAnAccount(List<Accounts> accounts){
+    public static List<Accounts> createAnAccount(List<Accounts> accounts) {
         Scanner sc = new Scanner(System.in);
 
         String username;
@@ -88,17 +89,16 @@ public class App {
             System.out.print("Repeat you password: ");
             repeatPassword = sc.nextLine();
 
-            if (password.equalsIgnoreCase(repeatPassword)){
+            if (password.equalsIgnoreCase(repeatPassword)) {
                 System.out.println("Username created. Login!");
                 System.out.println("");
                 isInputIncorrect = false;
-            }
-            else {
+            } else {
                 System.out.println("You've typed your password wrong!");
             }
 
             for (int i = 0; i < accounts.size(); i++) {
-                if (username.equalsIgnoreCase(accounts.get(i).getUsername())){
+                if (username.equalsIgnoreCase(accounts.get(i).getUsername())) {
                     System.out.println("Username taken!");
                 }
             }
@@ -111,7 +111,7 @@ public class App {
     }
 
 
-    public static void chooseYourOption(List<Car> cars){
+    public static void chooseYourOption(List<Car> cars) {
         System.out.println("");
         System.out.println("What do you want to do?");
         System.out.println("1. Show all cars");
@@ -125,56 +125,285 @@ public class App {
         String input;
         do {
             input = sc.next();
-            if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2") || input.equalsIgnoreCase("3")){
+            if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2") || input.equalsIgnoreCase("3")) {
                 isOptionWrong = false;
-            }
-            else{
+            } else {
                 System.out.println("Please enter a correct input! (1 or 2)");
             }
         }
         while (isOptionWrong);
 
-        if (input.equalsIgnoreCase("1")){
+        if (input.equalsIgnoreCase("1")) {
             showAllCars(cars);
-        }
-        else if (input.equalsIgnoreCase("2")){
+        } else if (input.equalsIgnoreCase("2")) {
             showAllFilters(cars);
-        }
-        else {
-            showAllSortingWays(cars);
+        } else {
+            sortCars(cars);
         }
 
         //ToDo just not to die
         //ToDo just not to die
     }
 
-    public static void showAllCars(List<Car> cars){
+    public static void showAllCars(List<Car> cars) {
         String transmision;
         for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getManual()){
+            if (cars.get(i).getManual()) {
                 transmision = "manual";
-            }
-            else {
+            } else {
                 transmision = "automatic";
             }
-            if (i < 9){
+            if (i < 9) {
                 System.out.println(" " + (i + 1) + ". " + cars.get(i).getMake() + " " + cars.get(i).getModel()
-                + " (year " + cars.get(i).getYear() + ", " + cars.get(i).getEngine() + " engine, with an " + transmision
-                + " transmision. The car is " + cars.get(i).getColor().toLowerCase() + " and costs " + cars.get(i).getPrice() + "€.)");
-            }
-            else {
-                System.out.println((i + 1) + ". " + cars.get(i).getMake() + " " + cars.get(i).getModel()+ " (year " + cars.get(i).getYear() + ", " + cars.get(i).getEngine() + " engine, with an " + transmision
+                        + " (year " + cars.get(i).getYear() + ", " + cars.get(i).getEngine() + " engine, with an " + transmision
+                        + " transmision. The car is " + cars.get(i).getColor().toLowerCase() + " and costs " + cars.get(i).getPrice() + "€.)");
+            } else {
+                System.out.println((i + 1) + ". " + cars.get(i).getMake() + " " + cars.get(i).getModel() + " (year " + cars.get(i).getYear() + ", " + cars.get(i).getEngine() + " engine, with an " + transmision
                         + " transmision. The car is " + cars.get(i).getColor() + " and costs " + cars.get(i).getPrice() + "€.)");
             }
         }
+
+        System.out.println("");
+        System.out.println("What do you want to do?");
+        System.out.println("1. Go back");
+        System.out.println("2. Rent a car");
+
+        System.out.print("Your answer: ");
+
+        Scanner scn = new Scanner(System.in);
+        String input;
+        boolean isInputIncorrect = true;
+
+        do {
+            input = scn.nextLine();
+            if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+                isInputIncorrect = false;
+            }
+            else {
+                System.out.print("Please enter a valid input: ");
+            }
+
+        }
+        while (isInputIncorrect);
+
+        if (input.equalsIgnoreCase("1")){
+            chooseYourOption(cars);
+        }
+        else {
+            rentACar(cars);
+        }
     }
 
-    public static void showAllFilters(List<Car> cars){
+    public static void showAllFilters(List<Car> cars) {
+        List<Car> filtredCars = new ArrayList<>();
+
+        System.out.println("");
+        System.out.println("Filter by:");
+        System.out.println("1. Make");
+        System.out.println("2. Price");
+        System.out.println("3. Release year");
+        System.out.println("4. Fuel type");
+        System.out.println("5. Engine");
+
+        System.out.print("Select you option: ");
+        Scanner scn = new Scanner(System.in);
+        boolean isInputIncorrect = true;
+        do {
+            String input = scn.nextLine();
+            switch (input) {
+                case "1":
+                    filtredCars = AppFilter.filterByMake(cars);
+                    isInputIncorrect = false;
+                    break;
+
+                case "2":
+                    filtredCars = AppFilter.filterByPrice(cars);
+                    isInputIncorrect = false;
+                    break;
+
+                case "3":
+                    filtredCars = AppFilter.filterByYear(cars);
+                    isInputIncorrect = false;
+                    break;
+
+                case "4":
+                    filtredCars = AppFilter.filterByFuel(cars);
+                    isInputIncorrect = false;
+                    break;
+
+                case "5":
+                    filtredCars = AppFilter.filterByEngine(cars);
+                    isInputIncorrect = false;
+                    break;
+
+                default:
+                    System.out.println("");
+                    System.out.print("Please enter a number from 1 to 5: ");
+            }
+        }
+        while (isInputIncorrect);
+
+        isInputIncorrect = true;
+        String input;
+        System.out.println(""); //space between output lines
+        System.out.println("Filter the cars again? ");
+        System.out.print("Your answer: ");
+
+        do {
+            input = scn.nextLine();
+            if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("no")){
+                isInputIncorrect = false;
+            }
+            else {
+                System.out.print("Please enter a valid input: ");
+            }
+
+        }
+        while (isInputIncorrect);
+
+        isInputIncorrect = true;
+
+
+        if (input.equalsIgnoreCase("yes")){
+            showAllFilters(filtredCars);
+        }
+        else {
+            System.out.println("What do you want to do?");
+            System.out.println("1. Go back");
+            System.out.println("2. Rent a car");
+
+            System.out.print("Your answer: ");
+
+            do {
+                input = scn.nextLine();
+                if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+                    isInputIncorrect = false;
+                }
+                else {
+                    System.out.print("Please enter a valid input: ");
+                }
+
+            }
+            while (isInputIncorrect);
+
+            if (input.equalsIgnoreCase("1")){
+                chooseYourOption(cars);
+            }
+            else {
+                rentACar(cars);
+            }
+        }
 
     }
 
 
-    public static void showAllSortingWays(List<Car> cars){
+    public static void sortCars(List<Car> cars) {
+        System.out.println("");
+        System.out.println("Sort by:");
+        System.out.println("1. Name");
+        System.out.println("2. Price (low to high)");
+        System.out.println("3. Price (high to low)");
+        System.out.println("4. Engine capacity");
+        System.out.println("5. Year of production");
 
+        System.out.print("Select your option: ");
+        Scanner scn = new Scanner(System.in);
+
+
+        AppSort appsort = new AppSort();
+        boolean isInputIncorrect = true;
+        do {
+            String input = scn.nextLine();
+            switch (input) {
+                case "1":
+                    AppSort.sortByName(cars);
+                    isInputIncorrect = false;
+                    break;
+
+                case "2":
+                    AppSort.sortByPriceLowToHigh(cars);
+                    isInputIncorrect = false;
+                    break;
+
+                case "3":
+                    AppSort.sortByPriceHighToLow(cars);
+                    isInputIncorrect = false;
+                    break;
+
+                case "4":
+                    AppSort.sortByEngine(cars);
+                    isInputIncorrect = false;
+                    break;
+
+                case "5":
+                    AppSort.sortByYear(cars);
+                    isInputIncorrect = false;
+                    break;
+
+                default:
+                    System.out.println("");
+                    System.out.print("Please enter a number from 1 to 5: ");
+            }
+        }
+        while (isInputIncorrect);
+
+        //TODO  herereeeeee
+        //todo eeeeee
+
+        isInputIncorrect = true;
+        String input;
+        System.out.println(""); //space between output lines
+        System.out.println("Sort the cars again? ");
+        System.out.print("Your answer: ");
+
+        do {
+            input = scn.nextLine();
+            if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("no")){
+                isInputIncorrect = false;
+            }
+            else {
+                System.out.print("Please enter a valid input: ");
+            }
+
+        }
+        while (isInputIncorrect);
+
+        isInputIncorrect = true;
+
+
+        if (input.equalsIgnoreCase("yes")){
+            sortCars(cars);
+        }
+        else {
+            System.out.println("What do you want to do?");
+            System.out.println("1. Go back");
+            System.out.println("2. Rent a car");
+
+            System.out.print("Your answer: ");
+
+            do {
+                input = scn.nextLine();
+                if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+                    isInputIncorrect = false;
+                }
+                else {
+                    System.out.print("Please enter a valid input: ");
+                }
+
+            }
+            while (isInputIncorrect);
+
+            if (input.equalsIgnoreCase("1")){
+                chooseYourOption(cars);
+            }
+            else {
+                rentACar(cars);
+            }
+        }
+    }
+
+
+    public static List<Car> rentACar(List<Car> cars){
+        return cars; //todo  just not to break
     }
 }
