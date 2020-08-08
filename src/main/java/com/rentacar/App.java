@@ -116,6 +116,7 @@ public class App {
         System.out.println("What do you want to do?");
         System.out.println("1. Show all cars");
         System.out.println("2. Show cars by a filter");
+        System.out.println("3. Sort cars");
         System.out.print("Choose you option: ");
 
         Scanner sc = new Scanner(System.in);
@@ -124,10 +125,10 @@ public class App {
         String input;
         do {
             input = sc.next();
-            if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+            if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2") || input.equalsIgnoreCase("3")){
                 isOptionWrong = false;
             }
-            else {
+            else{
                 System.out.println("Please enter a correct input! (1 or 2)");
             }
         }
@@ -136,8 +137,11 @@ public class App {
         if (input.equalsIgnoreCase("1")){
             showAllCars(cars);
         }
-        else{
+        else if (input.equalsIgnoreCase("2")){
             showAllFilters(cars);
+        }
+        else {
+            showAllSortingWays(cars);
         }
 
         //ToDo just not to die
@@ -166,6 +170,11 @@ public class App {
     }
 
     public static void showAllFilters(List<Car> cars){
+
+    }
+
+
+    public static void showAllSortingWays(List<Car> cars){
 
     }
 }
