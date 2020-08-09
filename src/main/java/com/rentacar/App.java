@@ -15,57 +15,89 @@ public class App {
         Scanner scn = new Scanner(System.in);
         boolean isLoginUnsuccessful = true;
         boolean isCreateUnsuccessful = true;
+        boolean isInputincorrect = true;
+
         String newAccount;
+        String input;
+
+        System.out.println("1. Log in");
+        System.out.println("2. Create an account");
+
+        System.out.print("Your answer: ");
 
         do {
-            for (int j = 0; j < 3; j++) {
-                if (isLoginUnsuccessful) {
-                    System.out.print("Enter username: ");
-                    String usernameInput = scn.nextLine();
+            input = scn.nextLine();
+            if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+                isInputincorrect = false;
+            }
+            else {
+                System.out.print("Please enter a valid input: ");
+            }
+        }
+        while (isInputincorrect);
 
-                    System.out.print("Enter password: ");
-                    String passwordInput = scn.nextLine();
+
+        if (input.equalsIgnoreCase("1")) {
+            System.out.println("");
+            System.out.println("Logging in");
+            do {
+                for (int j = 0; j < 3; j++) {
+                    if (isLoginUnsuccessful) {
+                        System.out.print("Enter username: ");
+                        String usernameInput = scn.nextLine();
+
+                        System.out.print("Enter password: ");
+                        String passwordInput = scn.nextLine();
 
 
-                    for (int i = 0; i < accounts.size(); i++) {
-                        String usernameList = accounts.get(i).getUsername();
-                        String passwordList = accounts.get(i).getPassword();
+                        for (int i = 0; i < accounts.size(); i++) {
+                            String usernameList = accounts.get(i).getUsername();
+                            String passwordList = accounts.get(i).getPassword();
 
-                        if (usernameInput.equalsIgnoreCase(usernameList) &&
-                                passwordInput.equals(passwordList)) {
-                            System.out.println("Login successful!");
-                            isLoginUnsuccessful = false;
-                            break;
+                            if (usernameInput.equalsIgnoreCase(usernameList) &&
+                                    passwordInput.equals(passwordList)) {
+                                System.out.println("Login successful!");
+                                isLoginUnsuccessful = false;
+                                break;
+                            }
                         }
                     }
+
+                    if (isLoginUnsuccessful) {
+                        System.out.println("Wrong username or password! Please enter again.");
+                        System.out.println("");
+                    }
                 }
 
                 if (isLoginUnsuccessful) {
-                    System.out.println("Wrong username or password! Please enter again.");
-                    System.out.println("");
-                }
-            }
+                    System.out.print("Create an account? ");
 
-            if (isLoginUnsuccessful) {
-                System.out.print("Create an account? ");
-
-                do {
-                    newAccount = scn.nextLine();
-                    if (newAccount.equalsIgnoreCase("yes")) {
-                        isCreateUnsuccessful = false;
-                        createAnAccount(accounts);
-                        break;
-                    } else if (newAccount.equalsIgnoreCase("no")) {
-                        isCreateUnsuccessful = false;
-                    } else {
-                        System.out.println("Please enter a valid input!");
+                    do {
+                        newAccount = scn.nextLine();
+                        if (newAccount.equalsIgnoreCase("yes")) {
+                            isCreateUnsuccessful = false;
+                            System.out.println("");
+                            System.out.println("Creating a new account");
+                            createAnAccount(accounts);
+                            break;
+                        } else if (newAccount.equalsIgnoreCase("no")) {
+                            isCreateUnsuccessful = false;
+                        } else {
+                            System.out.println("Please enter a valid input!");
+                        }
                     }
+                    while (isCreateUnsuccessful);
                 }
-                while (isCreateUnsuccessful);
-            }
 
+            }
+            while (isLoginUnsuccessful);
         }
-        while (isLoginUnsuccessful);
+
+        else {
+            System.out.println("");
+            System.out.println("Creating a new account");
+            createAnAccount(accounts);
+        }
 
 
     }
@@ -80,33 +112,48 @@ public class App {
         boolean isInputIncorrect = true;
 
         do {
-            System.out.print("Enter your username: ");
+            System.out.print("Enter a username: ");
             username = sc.nextLine();
 
-            System.out.print("Enter your password: ");
+            System.out.print("Enter a password: ");
             password = sc.nextLine();
 
-            System.out.print("Repeat you password: ");
+            System.out.print("Repeat password: ");
             repeatPassword = sc.nextLine();
 
-            if (password.equalsIgnoreCase(repeatPassword)) {
-                System.out.println("Username created. Login!");
-                System.out.println("");
-                isInputIncorrect = false;
-            } else {
-                System.out.println("You've typed your password wrong!");
-            }
+            boolean isUserNameTaken = false;
 
             for (int i = 0; i < accounts.size(); i++) {
                 if (username.equalsIgnoreCase(accounts.get(i).getUsername())) {
-                    System.out.println("Username taken!");
+                    isUserNameTaken = true;
+                    break;
                 }
             }
+
+            if (password.equalsIgnoreCase(repeatPassword) && !isUserNameTaken) {
+                System.out.println("Username created. Login!");
+                System.out.println("");
+                isInputIncorrect = false;
+            } else if (!password.equalsIgnoreCase(repeatPassword) && !isUserNameTaken){
+                System.out.println("You've typed your password wrong!");
+            }
+            else if (password.equalsIgnoreCase(repeatPassword) && isUserNameTaken){
+                System.out.println("Username taken!");
+            }
+            else {
+                System.out.println("Username taken and you've entered 2 different passwords!");
+            }
+
+
+
         }
         while (isInputIncorrect);
 
         Accounts addedUsername = new User(username, password);
         accounts.add(addedUsername);
+
+        App loginApp = new App();
+        loginApp.login(accounts);
         return accounts;
     }
 
@@ -140,9 +187,6 @@ public class App {
         } else {
             sortCars(cars);
         }
-
-        //ToDo just not to die
-        //ToDo just not to die
     }
 
     public static void showAllCars(List<Car> cars) {
@@ -176,20 +220,18 @@ public class App {
 
         do {
             input = scn.nextLine();
-            if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+            if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")) {
                 isInputIncorrect = false;
-            }
-            else {
+            } else {
                 System.out.print("Please enter a valid input: ");
             }
 
         }
         while (isInputIncorrect);
 
-        if (input.equalsIgnoreCase("1")){
+        if (input.equalsIgnoreCase("1")) {
             chooseYourOption(cars);
-        }
-        else {
+        } else {
             rentACar(cars);
         }
     }
@@ -208,6 +250,7 @@ public class App {
         System.out.print("Select you option: ");
         Scanner scn = new Scanner(System.in);
         boolean isInputIncorrect = true;
+
         do {
             String input = scn.nextLine();
             switch (input) {
@@ -251,10 +294,9 @@ public class App {
 
         do {
             input = scn.nextLine();
-            if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("no")){
+            if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("no")) {
                 isInputIncorrect = false;
-            }
-            else {
+            } else {
                 System.out.print("Please enter a valid input: ");
             }
 
@@ -264,10 +306,9 @@ public class App {
         isInputIncorrect = true;
 
 
-        if (input.equalsIgnoreCase("yes")){
+        if (input.equalsIgnoreCase("yes")) {
             showAllFilters(filtredCars);
-        }
-        else {
+        } else {
             System.out.println("What do you want to do?");
             System.out.println("1. Go back");
             System.out.println("2. Rent a car");
@@ -276,20 +317,18 @@ public class App {
 
             do {
                 input = scn.nextLine();
-                if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+                if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")) {
                     isInputIncorrect = false;
-                }
-                else {
+                } else {
                     System.out.print("Please enter a valid input: ");
                 }
 
             }
             while (isInputIncorrect);
 
-            if (input.equalsIgnoreCase("1")){
+            if (input.equalsIgnoreCase("1")) {
                 chooseYourOption(cars);
-            }
-            else {
+            } else {
                 rentACar(cars);
             }
         }
@@ -310,7 +349,6 @@ public class App {
         Scanner scn = new Scanner(System.in);
 
 
-        AppSort appsort = new AppSort();
         boolean isInputIncorrect = true;
         do {
             String input = scn.nextLine();
@@ -347,9 +385,6 @@ public class App {
         }
         while (isInputIncorrect);
 
-        //TODO  herereeeeee
-        //todo eeeeee
-
         isInputIncorrect = true;
         String input;
         System.out.println(""); //space between output lines
@@ -358,10 +393,9 @@ public class App {
 
         do {
             input = scn.nextLine();
-            if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("no")){
+            if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("no")) {
                 isInputIncorrect = false;
-            }
-            else {
+            } else {
                 System.out.print("Please enter a valid input: ");
             }
 
@@ -371,10 +405,9 @@ public class App {
         isInputIncorrect = true;
 
 
-        if (input.equalsIgnoreCase("yes")){
+        if (input.equalsIgnoreCase("yes")) {
             sortCars(cars);
-        }
-        else {
+        } else {
             System.out.println("What do you want to do?");
             System.out.println("1. Go back");
             System.out.println("2. Rent a car");
@@ -383,27 +416,25 @@ public class App {
 
             do {
                 input = scn.nextLine();
-                if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+                if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")) {
                     isInputIncorrect = false;
-                }
-                else {
+                } else {
                     System.out.print("Please enter a valid input: ");
                 }
 
             }
             while (isInputIncorrect);
 
-            if (input.equalsIgnoreCase("1")){
+            if (input.equalsIgnoreCase("1")) {
                 chooseYourOption(cars);
-            }
-            else {
+            } else {
                 rentACar(cars);
             }
         }
     }
 
 
-    public static List<Car> rentACar(List<Car> cars){
+    public static List<Car> rentACar(List<Car> cars) {
         return cars; //todo  just not to break
     }
 }

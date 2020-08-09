@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AppSort {
 
-    
+
     //ToDo Sort By Name
     public static List<Car> sortByName(List<Car> cars){
         List<Car> carsByName;
@@ -29,7 +29,7 @@ public class AppSort {
 
         return displayList(carsByName);
     }
-    
+
 
 
     //ToDo Sort by Price   (L to H)
@@ -74,7 +74,7 @@ public class AppSort {
 
         return displayList(carsByPrice);
     }
-    
+
 
 
     //ToDo Sort By Engine Capacity
@@ -124,10 +124,10 @@ public class AppSort {
     public static List<Car> displayList(List<Car> cars){
         for (int i = 0; i < cars.size(); i++) {
             System.out.println(cars.get(i).getMake() + " " + cars.get(i).getModel() + " (year " + cars.get(i).getYear()
-                            + ", is a " + cars.get(i).getCarType() + " " + cars.get(i).getColor().toLowerCase() + " car, with "
-                            + cars.get(i).getDoors() + " doors, "
-                            + "engine " + cars.get(i).getFuelType() + " " + cars.get(i).getEngine() + ", The car costs "
-                            + cars.get(i).getPrice() + "€)");
+                    + ", is a " + cars.get(i).getCarType() + " " + cars.get(i).getColor().toLowerCase() + " car, with "
+                    + cars.get(i).getDoors() + " doors, "
+                    + "engine " + cars.get(i).getFuelType() + " " + cars.get(i).getEngine() + ", The car costs "
+                    + cars.get(i).getPrice() + "€)");
 
         }
 
