@@ -1,5 +1,6 @@
-package com.rentacar;
+package com.rentacar.app;
 
+import com.rentacar.dataSource.DataSource;
 import com.rentacar.cars.Car;
 
 import java.util.ArrayList;
@@ -40,11 +41,7 @@ public class AppFilter {
         }
         while (isAnswerInvalid);
 
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getMake().equalsIgnoreCase(input)) {
-                filteredCars.add(cars.get(i));
-            }
-        }
+
 
         displayList(filteredCars);
         return filteredCars;
@@ -64,11 +61,11 @@ public class AppFilter {
             }
         }
 
-        System.out.println("Enter a minimum price (less or equal to  " + maximumPrice + ")");
+        System.out.println("Enter a minimum price (less or equal to " + maximumPrice + ")");
         System.out.print("Your answer: ");
         inputMin = scn.nextInt();
 
-        System.out.println("Enter a maximum price (less or equal to  " + maximumPrice + ")");
+        System.out.println("Enter a maximum price (less or equal to " + maximumPrice + ")");
         System.out.print("Your answer: ");
         inputMax = scn.nextInt();
 
@@ -96,7 +93,7 @@ public class AppFilter {
             }
         }
 
-        System.out.println("Enter a minimum year (less or equal to " + maximumYear + ")");
+        System.out.println("Enter a minimum year (more or equal to " + maximumYear + ")");
         System.out.print("Your answer: ");
         inputMin = scn.nextInt();
 

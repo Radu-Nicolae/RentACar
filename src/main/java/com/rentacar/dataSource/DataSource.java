@@ -1,4 +1,4 @@
-package com.rentacar;
+package com.rentacar.dataSource;
 
 import com.rentacar.cars.Car;
 import com.rentacar.cars.bmw.BmwXType;

@@ -1,6 +1,7 @@
-package com.rentacar;
+package com.rentacar.app;
 
 import com.rentacar.cars.Car;
+import com.rentacar.dataSource.DataSource;
 import com.rentacar.users.Accounts;
 import com.rentacar.users.User;
 
@@ -434,7 +435,18 @@ public class App {
     }
 
 
-    public static List<Car> rentACar(List<Car> cars) {
-        return cars; //todo  just not to break
+    public static void rentACar(List<Car> cars) {
+        List<Car> filtredCars;
+
+        filtredCars = AppRental.rentByMake(cars);
+
+        filtredCars = AppRental.rentByModel(filtredCars);
+
+        filtredCars = AppRental.rentByYear(filtredCars);
+
+        filtredCars = AppRental.chooseYourCar(filtredCars, DataSource.getCarList());
+
+
     }
+
 }

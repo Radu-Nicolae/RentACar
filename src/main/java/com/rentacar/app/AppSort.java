@@ -1,4 +1,4 @@
-package com.rentacar;
+package com.rentacar.app;
 
 import com.rentacar.cars.Car;
 

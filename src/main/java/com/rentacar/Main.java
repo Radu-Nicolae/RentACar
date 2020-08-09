@@ -1,11 +1,10 @@
 package com.rentacar;
 
+import com.rentacar.app.App;
 import com.rentacar.cars.Car;
+import com.rentacar.dataSource.DataSource;
 import com.rentacar.users.Accounts;
-import com.rentacar.users.Admin;
-import com.rentacar.users.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -17,5 +16,6 @@ public class Main {
         App rentACar = new App();
         rentACar.login(accounts);
         App.chooseYourOption(cars);
+
     }
 }
