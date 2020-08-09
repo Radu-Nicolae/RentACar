@@ -28,10 +28,9 @@ public class App {
 
         do {
             input = scn.nextLine();
-            if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+            if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")) {
                 isInputincorrect = false;
-            }
-            else {
+            } else {
                 System.out.print("Please enter a valid input: ");
             }
         }
@@ -39,8 +38,7 @@ public class App {
 
 
         if (input.equalsIgnoreCase("1")) {
-            System.out.println("");
-            System.out.println("Logging in");
+            System.out.println("\nLogging in");
             do {
                 for (int j = 0; j < 3; j++) {
                     if (isLoginUnsuccessful) {
@@ -51,9 +49,9 @@ public class App {
                         String passwordInput = scn.nextLine();
 
 
-                        for (int i = 0; i < accounts.size(); i++) {
-                            String usernameList = accounts.get(i).getUsername();
-                            String passwordList = accounts.get(i).getPassword();
+                        for (Accounts account : accounts) {
+                            String usernameList = account.getUsername();
+                            String passwordList = account.getPassword();
 
                             if (usernameInput.equalsIgnoreCase(usernameList) &&
                                     passwordInput.equals(passwordList)) {
@@ -65,8 +63,7 @@ public class App {
                     }
 
                     if (isLoginUnsuccessful) {
-                        System.out.println("Wrong username or password! Please enter again.");
-                        System.out.println("");
+                        System.out.println("Wrong username or password! Please enter again.\n");
                     }
                 }
 
@@ -77,8 +74,7 @@ public class App {
                         newAccount = scn.nextLine();
                         if (newAccount.equalsIgnoreCase("yes")) {
                             isCreateUnsuccessful = false;
-                            System.out.println("");
-                            System.out.println("Creating a new account");
+                            System.out.println("\nCreating a new account");
                             createAnAccount(accounts);
                             break;
                         } else if (newAccount.equalsIgnoreCase("no")) {
@@ -92,18 +88,15 @@ public class App {
 
             }
             while (isLoginUnsuccessful);
-        }
-
-        else {
-            System.out.println("");
-            System.out.println("Creating a new account");
+        } else {
+            System.out.println("\nCreating a new account");
             createAnAccount(accounts);
         }
 
 
     }
 
-    public static List<Accounts> createAnAccount(List<Accounts> accounts) {
+    public static void createAnAccount(List<Accounts> accounts) {
         Scanner sc = new Scanner(System.in);
 
         String username;
@@ -124,27 +117,23 @@ public class App {
 
             boolean isUserNameTaken = false;
 
-            for (int i = 0; i < accounts.size(); i++) {
-                if (username.equalsIgnoreCase(accounts.get(i).getUsername())) {
+            for (Accounts account : accounts) {
+                if (username.equalsIgnoreCase(account.getUsername())) {
                     isUserNameTaken = true;
                     break;
                 }
             }
 
             if (password.equalsIgnoreCase(repeatPassword) && !isUserNameTaken) {
-                System.out.println("Username created. Login!");
-                System.out.println("");
+                System.out.println("Username created. Login!\n");
                 isInputIncorrect = false;
-            } else if (!password.equalsIgnoreCase(repeatPassword) && !isUserNameTaken){
+            } else if (!password.equalsIgnoreCase(repeatPassword) && !isUserNameTaken) {
                 System.out.println("You've typed your password wrong!");
-            }
-            else if (password.equalsIgnoreCase(repeatPassword) && isUserNameTaken){
+            } else if (password.equalsIgnoreCase(repeatPassword) && isUserNameTaken) {
                 System.out.println("Username taken!");
-            }
-            else {
+            } else {
                 System.out.println("Username taken and you've entered 2 different passwords!");
             }
-
 
 
         }
@@ -155,13 +144,11 @@ public class App {
 
         App loginApp = new App();
         loginApp.login(accounts);
-        return accounts;
     }
 
 
     public static void chooseYourOption(List<Car> cars) {
-        System.out.println("");
-        System.out.println("What do you want to do?");
+        System.out.println("\nWhat do you want to do?");
         System.out.println("1. Show all cars");
         System.out.println("2. Show cars by a filter");
         System.out.println("3. Sort cars");
@@ -208,8 +195,7 @@ public class App {
             }
         }
 
-        System.out.println("");
-        System.out.println("What do you want to do?");
+        System.out.println("\nWhat do you want to do?");
         System.out.println("1. Go back");
         System.out.println("2. Rent a car");
 
@@ -240,8 +226,7 @@ public class App {
     public static void showAllFilters(List<Car> cars) {
         List<Car> filtredCars = new ArrayList<>();
 
-        System.out.println("");
-        System.out.println("Filter by:");
+        System.out.println("\nFilter by:");
         System.out.println("1. Make");
         System.out.println("2. Price");
         System.out.println("3. Release year");
@@ -256,7 +241,7 @@ public class App {
             String input = scn.nextLine();
             switch (input) {
                 case "1":
-                    filtredCars = AppFilter.filterByMake(cars);
+                    filtredCars = AppFilter.filterByMake();
                     isInputIncorrect = false;
                     break;
 
@@ -281,16 +266,14 @@ public class App {
                     break;
 
                 default:
-                    System.out.println("");
-                    System.out.print("Please enter a number from 1 to 5: ");
+                    System.out.print("\nPlease enter a number from 1 to 5: ");
             }
         }
         while (isInputIncorrect);
 
         isInputIncorrect = true;
         String input;
-        System.out.println(""); //space between output lines
-        System.out.println("Filter the cars again? ");
+        System.out.println("\nFilter the cars again? ");
         System.out.print("Your answer: ");
 
         do {
@@ -338,8 +321,7 @@ public class App {
 
 
     public static void sortCars(List<Car> cars) {
-        System.out.println("");
-        System.out.println("Sort by:");
+        System.out.println("\nSort by:");
         System.out.println("1. Name");
         System.out.println("2. Price (low to high)");
         System.out.println("3. Price (high to low)");
@@ -380,16 +362,14 @@ public class App {
                     break;
 
                 default:
-                    System.out.println("");
-                    System.out.print("Please enter a number from 1 to 5: ");
+                    System.out.print("\nPlease enter a number from 1 to 5: ");
             }
         }
         while (isInputIncorrect);
 
         isInputIncorrect = true;
         String input;
-        System.out.println(""); //space between output lines
-        System.out.println("Sort the cars again? ");
+        System.out.println("\nSort the cars again? ");
         System.out.print("Your answer: ");
 
         do {
@@ -444,7 +424,7 @@ public class App {
 
         filtredCars = AppRental.rentByYear(filtredCars);
 
-        filtredCars = AppRental.chooseYourCar(filtredCars, DataSource.getCarList());
+        AppRental.chooseYourCar(filtredCars, DataSource.getCarList());
 
 
     }

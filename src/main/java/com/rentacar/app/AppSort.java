@@ -7,8 +7,7 @@ import java.util.List;
 public class AppSort {
 
 
-    //ToDo Sort By Name
-    public static List<Car> sortByName(List<Car> cars){
+    public static void sortByName(List<Car> cars) {
         List<Car> carsByName;
         carsByName = cars;
 
@@ -27,13 +26,11 @@ public class AppSort {
             }
         }
 
-        return displayList(carsByName);
+        displayList(carsByName);
     }
 
 
-
-    //ToDo Sort by Price   (L to H)
-    public static List<Car> sortByPriceLowToHigh(List<Car> cars){
+    public static void sortByPriceLowToHigh(List<Car> cars) {
         List<Car> carsByPrice;
         carsByPrice = cars;
 
@@ -50,12 +47,11 @@ public class AppSort {
 
         }
 
-        return displayList(carsByPrice);
+        displayList(carsByPrice);
     }
 
 
-    //ToDo Sort by Price  (H to L)
-    public static List<Car> sortByPriceHighToLow(List<Car> cars){
+    public static void sortByPriceHighToLow(List<Car> cars) {
         List<Car> carsByPrice;
         carsByPrice = cars;
 
@@ -72,13 +68,11 @@ public class AppSort {
 
         }
 
-        return displayList(carsByPrice);
+        displayList(carsByPrice);
     }
 
 
-
-    //ToDo Sort By Engine Capacity
-    public static List<Car> sortByEngine(List<Car> cars){
+    public static void sortByEngine(List<Car> cars) {
         List<Car> carsByEngine;
         carsByEngine = cars;
 
@@ -95,13 +89,11 @@ public class AppSort {
 
         }
 
-        return displayList(carsByEngine);
+        displayList(carsByEngine);
     }
 
 
-
-    //ToDo Sort By Year
-    public static List<Car> sortByYear(List<Car> cars) {
+    public static void sortByYear(List<Car> cars) {
         List<Car> carsByYear;
         carsByYear = cars;
 
@@ -116,21 +108,19 @@ public class AppSort {
             }
         }
 
-        return displayList(carsByYear);
+        displayList(carsByYear);
 
     }
 
-
-    public static List<Car> displayList(List<Car> cars){
-        for (int i = 0; i < cars.size(); i++) {
-            System.out.println(cars.get(i).getMake() + " " + cars.get(i).getModel() + " (year " + cars.get(i).getYear()
-                    + ", is a " + cars.get(i).getCarType() + " " + cars.get(i).getColor().toLowerCase() + " car, with "
-                    + cars.get(i).getDoors() + " doors, "
-                    + "engine " + cars.get(i).getFuelType() + " " + cars.get(i).getEngine() + ", The car costs "
-                    + cars.get(i).getPrice() + "€)");
+    public static void displayList(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.println(car.getMake() + " " + car.getModel() + " (year " + car.getYear()
+                    + ", is a " + car.getCarType() + " " + car.getColor().toLowerCase() + " car, with "
+                    + car.getDoors() + " doors, "
+                    + "engine " + car.getFuelType() + " " + car.getEngine() + ", The car costs "
+                    + car.getPrice() + "€)");
 
         }
 
-        return cars;
     }
 }

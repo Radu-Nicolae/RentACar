@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class AppRental {
 
-    public static List<Car> rentByMake(List<Car> cars){
+    public static List<Car> rentByMake(List<Car> cars) {
         Scanner scn = new Scanner(System.in);
         boolean isInputIncorrect = true;
         String input;
@@ -34,16 +34,15 @@ public class AppRental {
         do {
             input = scn.nextLine();
             for (int i = 0; i < DataSource.getCarMakes().size(); i++) {
-                if (DataSource.getCarMakes().get(i).equalsIgnoreCase(input)){
+                if (DataSource.getCarMakes().get(i).equalsIgnoreCase(input)) {
                     containsTheInput = true;
                     break;
                 }
             }
 
-            if (containsTheInput){
+            if (containsTheInput) {
                 isInputIncorrect = false;
-            }
-            else {
+            } else {
                 System.out.print("Please choose a valid car make: ");
             }
         }
@@ -60,7 +59,7 @@ public class AppRental {
     }
 
 
-    public static List<Car> rentByModel(List<Car> cars){
+    public static List<Car> rentByModel(List<Car> cars) {
         Scanner scn = new Scanner(System.in);
         boolean isInputIncorrect = true;
         String input;
@@ -93,10 +92,9 @@ public class AppRental {
                 }
             }
 
-            if (containsTheInput){
+            if (containsTheInput) {
                 isInputIncorrect = false;
-            }
-            else {
+            } else {
                 System.out.print("Please choose a valid car make: ");
             }
         }
@@ -113,7 +111,7 @@ public class AppRental {
     }
 
 
-    public static List<Car> rentByYear(List<Car> cars){
+    public static List<Car> rentByYear(List<Car> cars) {
         Scanner scn = new Scanner(System.in);
         boolean isInputIncorrect = true;
         int input;
@@ -146,10 +144,9 @@ public class AppRental {
                 }
             }
 
-            if (containsTheInput){
+            if (containsTheInput) {
                 isInputIncorrect = false;
-            }
-            else {
+            } else {
                 System.out.print("Please choose a valid year: ");
             }
         }
@@ -164,7 +161,7 @@ public class AppRental {
         return filtredCars;
     }
 
-    public static List<Car> chooseYourCar(List<Car> cars, List<Car> allCars){
+    public static void chooseYourCar(List<Car> cars, List<Car> allCars) {
         Scanner scn = new Scanner(System.in);
         int input;
         List<Car> filtredCars = new ArrayList<>();
@@ -189,10 +186,9 @@ public class AppRental {
         System.out.print("Your answer: ");
         do {
             input = scn.nextInt();
-            if (input <= cars.size() && input > 0){
+            if (input <= cars.size() && input > 0) {
                 isInputIncorrect = false;
-            }
-            else {
+            } else {
                 System.out.print("\nPlease enter a valid input: ");
             }
         }
@@ -203,8 +199,8 @@ public class AppRental {
 
         System.out.println("\nYou are about to rent " + filtredCars.get(0).getMake() + " " + filtredCars.get(0).getModel() +
                 " (year " + filtredCars.get(0).getYear() + ", " + filtredCars.get(0).getEngine() +
-                        " " + filtredCars.get(0).getFuelType() + ", " + filtredCars.get(0).getPrice() + ") which costs "
-                        + filtredCars.get(0).getPrice() + "€ per day.");
+                " " + filtredCars.get(0).getFuelType() + ", " + filtredCars.get(0).getPrice() + ") which costs "
+                + filtredCars.get(0).getPrice() + "€ per day.");
 
 
         System.out.print("\nEnter the number of days you want to rent the car: ");
@@ -213,14 +209,12 @@ public class AppRental {
 
         do {
             input = scn.nextInt();
-            if (input > 0 && input <= 14){
+            if (input > 0 && input <= 14) {
                 isInputIncorrect = false;
-            }
-            else if (input <= 0){
+            } else if (input <= 0) {
                 System.out.println("Your must rent a car for at least 1 day");
                 System.out.print("Enter a new input: ");
-            }
-            else {
+            } else {
                 System.out.println("You can rent a car for maximum 14 days");
                 System.out.print("Enter a new input: ");
             }
@@ -228,7 +222,7 @@ public class AppRental {
         while (isInputIncorrect);
 
         System.out.println("\nYou are about to rent a " + filtredCars.get(0).getMake() + " " + filtredCars.get(0).getModel() +
-                           " for " + input + " days. The price is " + (input * filtredCars.get(0).getPrice()) + "€.");
+                " for " + input + " days. The price is " + (input * filtredCars.get(0).getPrice()) + "€.");
 
         System.out.print("\nConfirm? ");
 
@@ -237,27 +231,24 @@ public class AppRental {
 
         do {
             stringInput = scn.next();
-            if (stringInput.equalsIgnoreCase("yes") || stringInput.equalsIgnoreCase("no")){
+            if (stringInput.equalsIgnoreCase("yes") || stringInput.equalsIgnoreCase("no")) {
                 isInputIncorrect = false;
-            }
-            else {
+            } else {
                 System.out.print("Please enter a correct input: ");
             }
         }
         while (isInputIncorrect);
 
-        if (stringInput.equalsIgnoreCase("yes")){
+        if (stringInput.equalsIgnoreCase("yes")) {
             goodBye();
-        }
-        else {
+        } else {
             App.chooseYourOption(allCars);
         }
 
-        return cars;
     }
 
 
-    public static void goodBye(){
+    public static void goodBye() {
         System.out.println("Thank you for using our services, you will the receipt on the email! Have a nice day!");
     }
 }

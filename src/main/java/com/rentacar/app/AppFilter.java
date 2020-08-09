@@ -9,13 +9,12 @@ import java.util.Scanner;
 
 public class AppFilter {
 
-    public static List<Car> filterByMake(List<Car> cars) {
+    public static List<Car> filterByMake() {
         Scanner scn = new Scanner(System.in);
         List<String> carMakes = DataSource.getCarMakes();
         List<Car> filteredCars = new ArrayList<>();
 
-        System.out.println(""); //clear line
-        System.out.println("What car do you want? Select from the following list: ");
+        System.out.println("\nWhat car do you want? Select from the following list: ");
         System.out.print(carMakes.get(0));
         for (int i = 1; i < carMakes.size(); i++) {
             System.out.print(", " + carMakes.get(i));
@@ -30,9 +29,10 @@ public class AppFilter {
 
         do {
             input = scn.nextLine();
-            for (int i = 0; i < carMakes.size(); i++) {
-                if (input.equalsIgnoreCase(carMakes.get(i))) {
+            for (String carMake : carMakes) {
+                if (input.equalsIgnoreCase(carMake)) {
                     isAnswerInvalid = false;
+                    break;
                 }
             }
             if (isAnswerInvalid) {
@@ -40,7 +40,6 @@ public class AppFilter {
             }
         }
         while (isAnswerInvalid);
-
 
 
         displayList(filteredCars);
@@ -55,9 +54,9 @@ public class AppFilter {
         int inputMax;
 
         int maximumPrice = 0;
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getPrice() > maximumPrice) {
-                maximumPrice = cars.get(i).getPrice();
+        for (Car car : cars) {
+            if (car.getPrice() > maximumPrice) {
+                maximumPrice = car.getPrice();
             }
         }
 
@@ -69,9 +68,9 @@ public class AppFilter {
         System.out.print("Your answer: ");
         inputMax = scn.nextInt();
 
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getPrice() >= inputMin && cars.get(i).getPrice() <= inputMax) {
-                filteredCars.add(cars.get(i));
+        for (Car car : cars) {
+            if (car.getPrice() >= inputMin && car.getPrice() <= inputMax) {
+                filteredCars.add(car);
             }
         }
 
@@ -80,16 +79,16 @@ public class AppFilter {
     }
 
 
-    public static List<Car> filterByYear(List<Car> cars){
+    public static List<Car> filterByYear(List<Car> cars) {
         Scanner scn = new Scanner(System.in);
         List<Car> filteredCars = new ArrayList<>();
         int inputMin;
         int inputMax;
 
         int maximumYear = 0;
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getYear() > maximumYear) {
-                maximumYear = cars.get(i).getYear();
+        for (Car car : cars) {
+            if (car.getYear() > maximumYear) {
+                maximumYear = car.getYear();
             }
         }
 
@@ -101,9 +100,9 @@ public class AppFilter {
         System.out.print("Your answer: ");
         inputMax = scn.nextInt();
 
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getYear() >= inputMin && cars.get(i).getYear() <= inputMax) {
-                filteredCars.add(cars.get(i));
+        for (Car car : cars) {
+            if (car.getYear() >= inputMin && car.getYear() <= inputMax) {
+                filteredCars.add(car);
             }
         }
 
@@ -112,7 +111,7 @@ public class AppFilter {
     }
 
 
-    public static List<Car> filterByFuel(List<Car> cars){
+    public static List<Car> filterByFuel(List<Car> cars) {
         Scanner scn = new Scanner(System.in);
         List<Car> filteredCars = new ArrayList<>();
         String input;
@@ -123,18 +122,17 @@ public class AppFilter {
         do {
             input = scn.nextLine();
             if (input.equalsIgnoreCase("Diesel") || input.equalsIgnoreCase("Gasoline")
-                    || input.equalsIgnoreCase("Electric")){
+                    || input.equalsIgnoreCase("Electric")) {
                 isInputIncorrect = false;
-            }
-            else {
+            } else {
                 System.out.print("Please enter a valid input: ");
             }
         }
         while (isInputIncorrect);
 
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getFuelType().equalsIgnoreCase(input)){
-                filteredCars.add(cars.get(i));
+        for (Car car : cars) {
+            if (car.getFuelType().equalsIgnoreCase(input)) {
+                filteredCars.add(car);
             }
         }
 
@@ -143,16 +141,16 @@ public class AppFilter {
     }
 
 
-    public static List<Car> filterByEngine(List<Car> cars){
+    public static List<Car> filterByEngine(List<Car> cars) {
         Scanner scn = new Scanner(System.in);
         List<Car> filteredCars = new ArrayList<>();
         double inputMin;
         double inputMax;
 
         double maximumCapacity = 0;
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getEngine() > maximumCapacity) {
-                maximumCapacity = cars.get(i).getEngine();
+        for (Car car : cars) {
+            if (car.getEngine() > maximumCapacity) {
+                maximumCapacity = car.getEngine();
             }
         }
 
@@ -164,9 +162,9 @@ public class AppFilter {
         System.out.print("Your answer: ");
         inputMax = scn.nextDouble();
 
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getEngine() >= inputMin && cars.get(i).getEngine() <= inputMax) {
-                filteredCars.add(cars.get(i));
+        for (Car car : cars) {
+            if (car.getEngine() >= inputMin && car.getEngine() <= inputMax) {
+                filteredCars.add(car);
             }
         }
 
@@ -174,23 +172,21 @@ public class AppFilter {
         return filteredCars;
     }
 
-    public static List<Car> displayList(List<Car> cars){
+    public static void displayList(List<Car> cars) {
 
-        if (cars.size() == 0){
+        if (cars.size() == 0) {
             System.out.println("No cars were found");
-        }
-        else {
-            for (int i = 0; i < cars.size(); i++) {
-                System.out.println(cars.get(i).getMake() + " " + cars.get(i).getModel() + " (year " + cars.get(i).getYear()
-                        + ", is a " + cars.get(i).getCarType() + " " + cars.get(i).getColor().toLowerCase() + " car, with "
-                        + cars.get(i).getDoors() + " doors, "
-                        + "engine " + cars.get(i).getFuelType() + " " + cars.get(i).getEngine() + ", The car costs "
-                        + cars.get(i).getPrice() + "€)");
+        } else {
+            for (Car car : cars) {
+                System.out.println(car.getMake() + " " + car.getModel() + " (year " + car.getYear()
+                        + ", is a " + car.getCarType() + " " + car.getColor().toLowerCase() + " car, with "
+                        + car.getDoors() + " doors, "
+                        + "engine " + car.getFuelType() + " " + car.getEngine() + ", The car costs "
+                        + car.getPrice() + "€)");
 
             }
         }
 
-        return cars;
     }
 
 }

@@ -6,5 +6,4 @@ public class User extends Accounts{
         super(username, password);
     }
 
-    private boolean isAdmin = false;
 }
