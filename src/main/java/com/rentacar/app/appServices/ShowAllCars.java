@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class ShowAllCars {
 
     public static void showAllCars(List<Car> cars) {
-        App app = new App();
 
         String transmision;
         for (int i = 0; i < cars.size(); i++) {
@@ -50,9 +49,9 @@ public class ShowAllCars {
         while (isInputIncorrect);
 
         if (input.equalsIgnoreCase("1")) {
-            app.chooseYourOption(cars);
+            App.chooseYourOption(cars);
         } else {
-            app.rentACar(cars);
+            App.rentACar(cars);
         }
     }
 }
