@@ -1,12 +1,12 @@
 package com.rentacar.users;
 
-public class Accounts {
+public class Account {
 
     private String username;
     private String password;
 
 
-    public Accounts(String username, String password) {
+    public Account(String username, String password) {
         this.username = username;
         this.password = password;
     }

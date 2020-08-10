@@ -11,7 +11,7 @@ import com.rentacar.cars.volkswagen.Golf;
 import com.rentacar.cars.volkswagen.Passat;
 import com.rentacar.cars.volkswagen.Polo;
 import com.rentacar.cars.volkswagen.Tuareg;
-import com.rentacar.users.Accounts;
+import com.rentacar.users.Account;
 import com.rentacar.users.Admin;
 import com.rentacar.users.User;
 
@@ -175,32 +175,32 @@ public class DataSource {
         return carMakes;
     }
 
-    public static List<Accounts> getUserList() {
+    public static List<Account> getUserList() {
         //returns user list
-        List<Accounts> accounts = new ArrayList<>();
+        List<Account> accounts = new ArrayList<>();
 
-        Accounts admin0 = new Admin("Radu", "222");
+        Account admin0 = new Admin("Radu", "222");
         accounts.add(admin0);
-        Accounts admin1 = new Admin("Bobita", "1234");
+        Account admin1 = new Admin("Bobita", "1234");
         accounts.add(admin1);
-        Accounts admin2 = new Admin("Adelina", "22415");
+        Account admin2 = new Admin("Adelina", "22415");
         accounts.add(admin2);
 
-        Accounts user0 = new User("Radu", "222");
+        Account user0 = new User("Radu", "222");
         accounts.add(user0);
-        Accounts user1 = new User("Marcel", "MRC");
+        Account user1 = new User("Marcel", "MRC");
         accounts.add(user1);
-        Accounts user2 = new User("Vlad", "VLD");
+        Account user2 = new User("Vlad", "VLD");
         accounts.add(user2);
-        Accounts user3 = new User("Adela", "ADL");
+        Account user3 = new User("Adela", "ADL");
         accounts.add(user3);
-        Accounts user4 = new User("Daniel", "DNL");
+        Account user4 = new User("Daniel", "DNL");
         accounts.add(user4);
-        Accounts user5 = new User("Marian", "MRN");
+        Account user5 = new User("Marian", "MRN");
         accounts.add(user5);
-        Accounts user6 = new User("Horia", "HRA");
+        Account user6 = new User("Horia", "HRA");
         accounts.add(user6);
-        Accounts user7 = new User("Daria", "DRA");
+        Account user7 = new User("Daria", "DRA");
         accounts.add(user7);
         //no sql :(
 

@@ -2,7 +2,7 @@ package com.rentacar.app;
 
 import com.rentacar.cars.Car;
 import com.rentacar.dataSource.DataSource;
-import com.rentacar.users.Accounts;
+import com.rentacar.users.Account;
 import com.rentacar.users.User;
 
 import java.util.ArrayList;
@@ -11,9 +11,10 @@ import java.util.Scanner;
 
 public class App {
 
-    public void login(List<Accounts> accounts) {
+    Scanner scn = new Scanner(System.in);
 
-        Scanner scn = new Scanner(System.in);
+    public void login(List<Account> accounts) {
+
         boolean isLoginUnsuccessful = true;
         boolean isCreateUnsuccessful = true;
         boolean isInputincorrect = true;
@@ -49,7 +50,7 @@ public class App {
                         String passwordInput = scn.nextLine();
 
 
-                        for (Accounts account : accounts) {
+                        for (Account account : accounts) {
                             String usernameList = account.getUsername();
                             String passwordList = account.getPassword();
 
@@ -96,8 +97,8 @@ public class App {
 
     }
 
-    public static void createAnAccount(List<Accounts> accounts) {
-        Scanner sc = new Scanner(System.in);
+    public static void createAnAccount(List<Account> accounts) {
+        Scanner scn = new Scanner(System.in);
 
         String username;
         String password;
@@ -107,17 +108,17 @@ public class App {
 
         do {
             System.out.print("Enter a username: ");
-            username = sc.nextLine();
+            username = scn.nextLine();
 
             System.out.print("Enter a password: ");
-            password = sc.nextLine();
+            password = scn.nextLine();
 
             System.out.print("Repeat password: ");
-            repeatPassword = sc.nextLine();
+            repeatPassword = scn.nextLine();
 
             boolean isUserNameTaken = false;
 
-            for (Accounts account : accounts) {
+            for (Account account : accounts) {
                 if (username.equalsIgnoreCase(account.getUsername())) {
                     isUserNameTaken = true;
                     break;
@@ -139,7 +140,7 @@ public class App {
         }
         while (isInputIncorrect);
 
-        Accounts addedUsername = new User(username, password);
+        Account addedUsername = new User(username, password);
         accounts.add(addedUsername);
 
         App loginApp = new App();
@@ -154,12 +155,12 @@ public class App {
         System.out.println("3. Sort cars");
         System.out.print("Choose you option: ");
 
-        Scanner sc = new Scanner(System.in);
+        Scanner scn = new Scanner(System.in);
         boolean isOptionWrong = true;
 
         String input;
         do {
-            input = sc.next();
+            input = scn.next();
             if (input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2") || input.equalsIgnoreCase("3")) {
                 isOptionWrong = false;
             } else {
@@ -185,11 +186,11 @@ public class App {
             } else {
                 transmision = "automatic";
             }
-            if (i < 9) {
-                System.out.println(" " + (i + 1) + ". " + cars.get(i).getMake() + " " + cars.get(i).getModel()
+            if (i < 9) { //one space padding before the indexes of the cars in order to align all the cars to the left
+                System.out.print(" " + (i + 1) + ". " + cars.get(i).getMake() + " " + cars.get(i).getModel()
                         + " (year " + cars.get(i).getYear() + ", " + cars.get(i).getEngine() + " engine, with an " + transmision
                         + " transmision. The car is " + cars.get(i).getColor().toLowerCase() + " and costs " + cars.get(i).getPrice() + "€.)");
-            } else {
+            } else { //no more need the padding
                 System.out.println((i + 1) + ". " + cars.get(i).getMake() + " " + cars.get(i).getModel() + " (year " + cars.get(i).getYear() + ", " + cars.get(i).getEngine() + " engine, with an " + transmision
                         + " transmision. The car is " + cars.get(i).getColor() + " and costs " + cars.get(i).getPrice() + "€.)");
             }
