@@ -1,12 +1,17 @@
 package com.rentacar.dataSource;
 
 import com.rentacar.cars.Car;
+import com.rentacar.cars.audi.*;
 import com.rentacar.cars.bmw.BmwXType;
 import com.rentacar.cars.bmw.X1;
 import com.rentacar.cars.bmw.X3;
 import com.rentacar.cars.bmw.X5;
 import com.rentacar.cars.dacia.Duster;
 import com.rentacar.cars.dacia.Logan;
+import com.rentacar.cars.volkswagen.Golf;
+import com.rentacar.cars.volkswagen.Passat;
+import com.rentacar.cars.volkswagen.Polo;
+import com.rentacar.cars.volkswagen.Tuareg;
 import com.rentacar.users.Accounts;
 import com.rentacar.users.Admin;
 import com.rentacar.users.User;
@@ -19,45 +24,141 @@ public class DataSource {
     public static List<Car> getCarList() {
         List<Car> cars = new ArrayList<>();
 
-        BmwXType bmw1_0 = new X1("BMW", "X1", "Diesel", "Black", "SUV", 2.0, true, 4, 100, 2018);
+        BmwXType bmw1_0 = new X1("BMW", "X1", "Diesel", "Black", "SUV", 2.0, true, 4, 15, 2018);
         cars.add(bmw1_0);
-        BmwXType bmw1_1 = new X1("BMW", "X1", "Diesel", "Black", "SUV", 2.8, true, 4, 120, 2020);
+        BmwXType bmw1_1 = new X1("BMW", "X1", "Diesel", "Black", "SUV", 2.8, true, 4, 12, 2020);
         cars.add(bmw1_1);
-        BmwXType bmw1_2 = new X1("BMW", "X1", "Diesel", "Silver", "SUV", 1.8, true, 4, 70, 2010);
+        BmwXType bmw1_2 = new X1("BMW", "X1", "Diesel", "Silver", "SUV", 1.8, true, 4, 11, 2010);
         cars.add(bmw1_2);
 
-        BmwXType bmw2_0 = new X3("BMW", "X3", "Gasoline", "Black", "SUV", 1.8, false, 4, 80, 2015);
+        BmwXType bmw2_0 = new X3("BMW", "X3", "Gasoline", "Black", "SUV", 1.8, false, 4, 10, 2015);
         cars.add(bmw2_0);
-        BmwXType bmw2_1 = new X3("BMW", "X3", "Diesel", "Silver", "SUV", 2.4, false, 4, 140, 2020);
+        BmwXType bmw2_1 = new X3("BMW", "X3", "Diesel", "Silver", "SUV", 2.4, false, 4, 14, 2020);
         cars.add(bmw2_1);
-        BmwXType bmw2_2 = new X3("BMW", "X3", "Diesel", "White", "SUV", 2.0, true, 4, 100, 2018);
+        BmwXType bmw2_2 = new X3("BMW", "X3", "Diesel", "White", "SUV", 2.0, true, 4, 11, 2018);
         cars.add(bmw2_2);
 
-        BmwXType bmw3_0 = new X5("BMW", "X5", "Diesel", "Pink", "SUV", 4.0, true, 4, 200, 2020);
+        BmwXType bmw3_0 = new X5("BMW", "X5", "Diesel", "Pink", "SUV", 4.0, true, 4, 35, 2020);
         cars.add(bmw3_0);
-        BmwXType bmw3_1 = new X5("BMW", "X5", "Gasoline", "Black", "SUV", 2.5, true, 4, 120, 2009);
+        BmwXType bmw3_1 = new X5("BMW", "X5", "Gasoline", "Black", "SUV", 2.5, true, 4, 11, 2009);
         cars.add(bmw3_1);
-        BmwXType bmw3_2 = new X5("BMW", "X5", "Gasoline", "Silver", "SUV", 1.8, true, 4, 70, 2002);
+        BmwXType bmw3_2 = new X5("BMW", "X5", "Gasoline", "Silver", "SUV", 1.8, true, 4, 12, 2002);
         cars.add(bmw3_2);
-        BmwXType bmw3_3 = new X5("BMW", "X5", "Diesel", "Black", "SUV", 2.0, true, 4, 110, 2015);
+        BmwXType bmw3_3 = new X5("BMW", "X5", "Diesel", "Black", "SUV", 2.0, true, 4, 12, 2015);
         cars.add(bmw3_3);
 
 
-        Car dacia1_0 = new Duster("Dacia", "Duster", "Diesel", "Black", "SUV", 1.5, true, 4, 40, 2015);
+        Car dacia1_0 = new Duster("Dacia", "Duster", "Diesel", "Black", "SUV", 1.5, true, 4, 8, 2015);
         cars.add(dacia1_0);
-        Car dacia1_1 = new Duster("Dacia", "Duster", "Diesel", "Black", "SUV", 1.5, true, 4, 40, 2015);
+        Car dacia1_1 = new Duster("Dacia", "Duster", "Diesel", "Black", "SUV", 1.5, true, 4, 8, 2015);
         cars.add(dacia1_1);
-        Car dacia1_2 = new Duster("Dacia", "Duster", "Diesel", "Blue", "SUV", 1.7, false, 4, 50, 2015);
+        Car dacia1_2 = new Duster("Dacia", "Duster", "Diesel", "Blue", "SUV", 1.7, false, 4, 9, 2015);
         cars.add(dacia1_2);
 
-        Car dacia2_0 = new Logan("Dacia", "Logan", "Gasoline", "White", "Normal", 1.2, true, 4, 30, 2007);
+        Car dacia2_0 = new Logan("Dacia", "Logan", "Gasoline", "White", "Normal", 1.2, true, 4, 7, 2007);
         cars.add(dacia2_0);
-        Car dacia2_1 = new Logan("Dacia", "Logan", "Gasoline", "Red", "Normal", 1.5, true, 4, 40, 2014);
+        Car dacia2_1 = new Logan("Dacia", "Logan", "Gasoline", "Red", "Normal", 1.5, true, 4, 7, 2014);
         cars.add(dacia2_1);
-        Car dacia2_2 = new Logan("Dacia", "Logan", "Diesel", "Black", "Normal", 1.4, true, 4, 50, 2017);
+        Car dacia2_2 = new Logan("Dacia", "Logan", "Diesel", "Black", "Normal", 1.4, true, 4, 8, 2017);
         cars.add(dacia2_2);
-        Car dacia2_3 = new Logan("Dacia", "Logan", "Diesel", "Black", "Normal", 1.6, true, 4, 50, 2017);
+        Car dacia2_3 = new Logan("Dacia", "Logan", "Diesel", "Black", "Normal", 1.6, true, 4, 8, 2017);
         cars.add(dacia2_3);
+
+
+        Car volkswagen1_0 = new Golf("Volkswagen", "Golf", "Diesel", "Gray", "Normal", 2.0, true, 4, 10, 2015);
+        cars.add(volkswagen1_0);
+        Car volkswagen1_1 = new Golf("Volkswagen", "Golf", "Diesel", "Dark Blue", "Normal", 1.8, true, 4, 11, 2017);
+        cars.add(volkswagen1_1);
+        Car volkswagen1_2 = new Golf("Volkswagen", "Golf", "Diesel", "Black", "Sport", 2.5, true, 2, 20, 2018);
+        cars.add(volkswagen1_2);
+        Car volkswagen1_3 = new Golf("Volkswagen", "Golf", "Diesel", "White", "Normal", 1.8, true, 4, 9, 2010);
+        cars.add(volkswagen1_3);
+        Car volkswagen1_4 = new Golf("Volkswagen", "Golf", "Diesel", "Red", "Normal", 1.5, true, 4, 7, 2002);
+        cars.add(volkswagen1_4);
+
+
+        Car volkswagen2_0 = new Polo("Volkswagen", "Polo", "Diesel", "Blue", "Normal", 1.2, true, 4, 7, 2010);
+        cars.add(volkswagen2_0);
+        Car volkswagen2_1 = new Polo("Volkswagen", "Polo", "Diesel", "Blue", "Normal", 1.5, true, 4, 10, 2020);
+        cars.add(volkswagen2_1);
+        Car volkswagen2_2 = new Polo("Volkswagen", "Polo", "Diesel", "White", "Normal", 1.5, true, 4, 8, 2014);
+        cars.add(volkswagen2_2);
+        Car volkswagen2_3 = new Polo("Volkswagen", "Polo", "Gasoline", "Black", "Sport", 2.4, false, 2, 20, 2019);
+        cars.add(volkswagen2_3);
+        Car volkswagen2_4 = new Polo("Volkswagen", "Polo", "Gasoline", "Black", "Normal", 1.8, true, 4, 7, 2002);
+        cars.add(volkswagen2_4);
+
+
+        Car volkswagen3_0 = new Passat("Volkswagen", "Passat", "Diesel", "Black", "Normal", 2.0, true, 4, 10, 2006);
+        cars.add(volkswagen3_0);
+        Car volkswagen3_1 = new Passat("Volkswagen", "Passat", "Diesel", "Black", "Normal", 2.0, true, 4, 10, 2006);
+        cars.add(volkswagen3_1);
+        Car volkswagen3_2 = new Passat("Volkswagen", "Passat", "Diesel", "Black", "Normal", 2.0, true, 4, 14, 2014);
+        cars.add(volkswagen3_2);
+        Car volkswagen3_3 = new Passat("Volkswagen", "Passat", "Diesel", "Black", "Normal", 2.4, false, 4, 17, 2018);
+        cars.add(volkswagen3_3);
+        Car volkswagen3_4 = new Passat("Volkswagen", "Passat", "Diesel", "Gray", "Normal", 2.2, false, 4, 15, 2017);
+        cars.add(volkswagen3_4);
+
+
+        Car volkswagen4_0 = new Tuareg("Volkswagen", "Tuareg", "Electric", "Black", "SUV", 0.0, false, 4, 18, 2019);
+        cars.add(volkswagen4_0);
+        Car volkswagen4_1 = new Tuareg("Volkswagen", "Tuareg", "Electric", "Black", "SUV", 0.0, false, 4, 20, 2020);
+        cars.add(volkswagen4_1);
+        Car volkswagen4_2 = new Tuareg("Volkswagen", "Tuareg", "Diesel", "Gray", "SUV", 2.5, true, 4, 15, 2015);
+        cars.add(volkswagen4_2);
+        Car volkswagen4_3 = new Tuareg("Volkswagen", "Tuareg", "Diesel", "White", "SUV", 2.2, true, 4, 15, 2018);
+        cars.add(volkswagen4_3);
+
+
+        Car audi1_0 = new A3("Audi", "A3", "Gasoline", "Gray", "Normal", 1.5, true, 4, 8, 2010);
+        cars.add(audi1_0);
+        Car audi1_1 = new A3("Audi", "A3", "Gasoline", "Black", "Normal", 1.6, true, 4, 8, 2008);
+        cars.add(audi1_1);
+        Car audi1_2 = new A3("Audi", "A3", "Gasoline", "Blue", "Normal", 1.6, true, 4, 7, 2002);
+        cars.add(audi1_2);
+
+
+        Car audi2_0 = new A5("Audi", "A5", "Diesel", "Black", "Normal", 1.6, true, 4, 9, 2014);
+        cars.add(audi2_0);
+        Car audi2_1 = new A5("Audi", "A5", "Diesel", "Black", "Sport", 2.4, true, 2, 15, 2015);
+        cars.add(audi2_1);
+        Car audi2_2 = new A5("Audi", "A5", "Diesel", "White", "Sport", 2.8, true, 2, 17, 2018);
+        cars.add(audi2_2);
+        Car audi2_3 = new A5("Audi", "A5", "Diesel", "Blue", "Normal", 2.0, true, 4, 11, 2012);
+        cars.add(audi2_3);
+
+
+        Car audi3_0 = new A7("Audi", "A7", "Diesel", "Black", "Normal", 2.2, true, 4, 13, 2015);
+        cars.add(audi3_0);
+        Car audi3_1 = new A7("Audi", "A7", "Diesel", "Black", "Normal", 2.2, true, 4, 13, 2015);
+        cars.add(audi3_1);
+        Car audi3_2 = new A7("Audi", "A7", "Diesel", "White", "Normal", 2.0, true, 4, 14, 2015);
+        cars.add(audi3_2);
+        Car audi3_3 = new A7("Audi", "A7", "Gasoline", "Blue", "Normal", 2.4, true, 4, 15, 2016);
+        cars.add(audi3_3);
+
+
+        Car audi4_0 = new A8("Audi", "A8", "Gasoline", "Black", "Normal", 3.0, true, 4, 17, 2015);
+        cars.add(audi4_0);
+        Car audi4_1 = new A8("Audi", "A8", "Diesel", "Black", "Normal", 2.7, true, 4, 15, 2015);
+        cars.add(audi4_1);
+        Car audi4_2 = new A8("Audi", "A8", "Diesel", "White", "Normal", 2.5, true, 4, 14, 2013);
+        cars.add(audi4_2);
+        Car audi4_3 = new A8("Audi", "A8", "Diesel", "Black", "Sport", 4.0, false, 2, 28, 2019);
+        cars.add(audi4_3);
+
+
+        Car audi5_0 = new Q5("Audi", "Q5", "Diesel", "Dark Blue", "SUV", 2.5, true, 4, 17, 2015);
+        cars.add(audi5_0);
+        Car audi5_1 = new Q5("Audi", "Q5", "Diesel", "Dark Blue","SUV", 2.7, true, 4, 18, 2014);
+        cars.add(audi5_1);
+        Car audi5_2 = new Q5("Audi", "Q5", "Diesel", "Black", "SUV", 2.5, true, 4, 17, 2016);
+        cars.add(audi5_2);
+        Car audi5_3 = new Q5("Audi", "Q5", "Diesel", "White", "SUV", 3.0, true, 4, 20, 2015);
+        cars.add(audi5_3);
+
+
 
         return cars;
     }
@@ -68,6 +169,8 @@ public class DataSource {
 
         carMakes.add("BMW");
         carMakes.add("Dacia");
+        carMakes.add("Audi");
+        carMakes.add("Volkswagen");
 
 
         return carMakes;

@@ -199,7 +199,7 @@ public class AppRental {
 
         System.out.println("\nYou are about to rent " + filtredCars.get(0).getMake() + " " + filtredCars.get(0).getModel() +
                 " (year " + filtredCars.get(0).getYear() + ", " + filtredCars.get(0).getEngine() +
-                " " + filtredCars.get(0).getFuelType() + ", " + filtredCars.get(0).getPrice() + ") which costs "
+                " " + filtredCars.get(0).getFuelType() + ") which costs "
                 + filtredCars.get(0).getPrice() + "€ per day.");
 
 
@@ -249,6 +249,6 @@ public class AppRental {
 
 
     public static void goodBye() {
-        System.out.println("Thank you for using our services, you will the receipt on the email! Have a nice day!");
+        System.out.println("Thank you for using our services, you will get the receipt on the email! Have a nice day!");
     }
 }

@@ -241,7 +241,7 @@ public class App {
             String input = scn.nextLine();
             switch (input) {
                 case "1":
-                    filtredCars = AppFilter.filterByMake();
+                    filtredCars = AppFilter.filterByMake(cars);
                     isInputIncorrect = false;
                     break;
 

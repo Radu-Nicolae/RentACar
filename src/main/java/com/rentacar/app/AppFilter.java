@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class AppFilter {
 
-    public static List<Car> filterByMake() {
+    public static List<Car> filterByMake(List<Car> cars) {
         Scanner scn = new Scanner(System.in);
         List<String> carMakes = DataSource.getCarMakes();
         List<Car> filteredCars = new ArrayList<>();
@@ -40,6 +40,13 @@ public class AppFilter {
             }
         }
         while (isAnswerInvalid);
+
+
+        for (Car car : cars) {
+            if (car.getMake().equalsIgnoreCase(input)) {
+                filteredCars.add(car);
+            }
+        }
 
 
         displayList(filteredCars);
@@ -92,7 +99,7 @@ public class AppFilter {
             }
         }
 
-        System.out.println("Enter a minimum year (more or equal to " + maximumYear + ")");
+        System.out.println("Enter a minimum year (less or equal to " + maximumYear + ")");
         System.out.print("Your answer: ");
         inputMin = scn.nextInt();
 
