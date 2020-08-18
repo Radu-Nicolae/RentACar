@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Login {
 
-    public static void login(List<Account> accounts) {
+    public static boolean login(List<Account> accounts) {
 
         Scanner scn = new Scanner(System.in);
 
@@ -17,6 +17,9 @@ public class Login {
 
         String newAccount;
         String input;
+        int index;
+        int i = 0;
+        boolean isAdmin;
 
         System.out.println("1. Log in");
         System.out.println("2. Create an account");
@@ -45,7 +48,7 @@ public class Login {
                         System.out.print("Enter password: ");
                         String passwordInput = scn.nextLine();
 
-
+                        i = 0;
                         for (Account account : accounts) {
                             String usernameList = account.getUsername();
                             String passwordList = account.getPassword();
@@ -56,6 +59,7 @@ public class Login {
                                 isLoginUnsuccessful = false;
                                 break;
                             }
+                            i++;
                         }
                     }
 
@@ -90,6 +94,16 @@ public class Login {
             CreateAccount.createAnAccount(accounts);
         }
 
+        Account account = accounts.get(i);
+        if (account.isAdmin()){
+            System.out.println("Logged in as admin!");
+            isAdmin = true;
+        }
+        else {
+            isAdmin = false;
+        }
+
+        return isAdmin;
 
     }
 }

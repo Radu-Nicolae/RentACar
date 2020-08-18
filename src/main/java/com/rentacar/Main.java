@@ -12,10 +12,10 @@ public class Main {
     public static void main(String[] args) {
         List<Account> accounts = DataSource.getUserList();
         List<Car> cars = DataSource.getCarList();
+        boolean isAdmin;
 
-        App rentACar = new App();
-        rentACar.login(accounts);
-        App.chooseYourOption(cars);
+        isAdmin = App.login(accounts);
+        App.chooseYourOption(cars, accounts, isAdmin);
 
     }
 }

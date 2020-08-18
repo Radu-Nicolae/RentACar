@@ -2,6 +2,7 @@ package com.rentacar.app;
 
 import com.rentacar.cars.Car;
 import com.rentacar.dataSource.DataSource;
+import com.rentacar.users.Account;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,7 +162,7 @@ public class AppRental {
         return filtredCars;
     }
 
-    public static void chooseYourCar(List<Car> cars, List<Car> allCars) {
+    public static void chooseYourCar(List<Car> cars, List<Car> allCars, List<Account> accounts, boolean isAdmin) {
         Scanner scn = new Scanner(System.in);
         int input;
         List<Car> filtredCars = new ArrayList<>();
@@ -242,7 +243,7 @@ public class AppRental {
         if (stringInput.equalsIgnoreCase("yes")) {
             goodBye();
         } else {
-            App.chooseYourOption(allCars);
+            App.chooseYourOption(allCars, accounts, isAdmin);
         }
 
     }

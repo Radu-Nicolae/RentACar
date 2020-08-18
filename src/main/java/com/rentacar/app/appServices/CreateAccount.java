@@ -55,7 +55,6 @@ public class CreateAccount {
         Account addedUsername = new User(username, password);
         accounts.add(addedUsername);
 
-        App loginApp = new App();
-        loginApp.login(accounts);
+        App.login(accounts);
     }
 }

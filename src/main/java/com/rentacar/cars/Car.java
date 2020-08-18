@@ -32,44 +32,73 @@ public class Car {
         return make;
     }
 
+    public void setMake(String make) {
+        this.make = make;
+    }
+
     public String getModel() {
         return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getFuelType() {
         return fuelType;
     }
 
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
 
     public String getColor() {
         return color;
     }
 
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public String getCarType() {
         return carType;
     }
 
+    public void setCarType(String carType) {
+        this.carType = carType;
+    }
 
     public Double getEngine() {
         return engine;
     }
 
+    public void setEngine(Double engine) {
+        this.engine = engine;
+    }
 
     public Boolean getManual() {
         return isManual;
     }
 
+    public void setManual(Boolean manual) {
+        isManual = manual;
+    }
 
     public Integer getDoors() {
         return doors;
     }
 
+    public void setDoors(Integer doors) {
+        this.doors = doors;
+    }
 
     public Integer getPrice() {
         return price;
     }
 
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
 
     public Integer getYear() {
         return year;

@@ -1,14 +1,15 @@
-package com.rentacar.app.appServices;
+package com.rentacar.app.appServices.userUtilities;
 
 import com.rentacar.app.App;
 import com.rentacar.cars.Car;
+import com.rentacar.users.Account;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class ShowAllCars {
 
-    public static void showAllCars(List<Car> cars) {
+    public static void showAllCars(List<Car> cars, List<Account> accounts, boolean isAdmin) {
 
         String transmision;
         for (int i = 0; i < cars.size(); i++) {
@@ -49,9 +50,9 @@ public class ShowAllCars {
         while (isInputIncorrect);
 
         if (input.equalsIgnoreCase("1")) {
-            App.chooseYourOption(cars);
+            App.chooseYourOption(cars, accounts, isAdmin);
         } else {
-            App.rentACar(cars);
+            App.rentACar(cars, isAdmin, accounts);
         }
     }
 }

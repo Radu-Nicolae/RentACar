@@ -113,13 +113,14 @@ public class AppSort {
     }
 
     public static void displayList(List<Car> cars) {
+        int i = 1;
         for (Car car : cars) {
-            System.out.println(car.getMake() + " " + car.getModel() + " (year " + car.getYear()
+            System.out.println(i + ". " + car.getMake() + " " + car.getModel() + " (year " + car.getYear()
                     + ", is a " + car.getCarType() + " " + car.getColor().toLowerCase() + " car, with "
                     + car.getDoors() + " doors, "
                     + "engine " + car.getFuelType() + " " + car.getEngine() + ", The car costs "
                     + car.getPrice() + "€)");
-
+            i++;
         }
 
     }

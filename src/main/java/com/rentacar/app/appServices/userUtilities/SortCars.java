@@ -1,54 +1,53 @@
-package com.rentacar.app.appServices;
+package com.rentacar.app.appServices.userUtilities;
 
 import com.rentacar.app.App;
-import com.rentacar.app.AppFilter;
+import com.rentacar.app.AppSort;
 import com.rentacar.cars.Car;
+import com.rentacar.users.Account;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ShowAllFilters {
+public class SortCars {
 
-    public static void showAllFilters(List<Car> cars) {
-        List<Car> filtredCars = new ArrayList<>();
+    public static void sortCars(List<Car> cars, List<Account> accounts, boolean isAdmin) {
+        System.out.println("\nSort by:");
+        System.out.println("1. Name");
+        System.out.println("2. Price (low to high)");
+        System.out.println("3. Price (high to low)");
+        System.out.println("4. Engine capacity");
+        System.out.println("5. Year of production");
 
-        System.out.println("\nFilter by:");
-        System.out.println("1. Make");
-        System.out.println("2. Price");
-        System.out.println("3. Release year");
-        System.out.println("4. Fuel type");
-        System.out.println("5. Engine");
-
-        System.out.print("Select you option: ");
+        System.out.print("Select your option: ");
         Scanner scn = new Scanner(System.in);
-        boolean isInputIncorrect = true;
 
+
+        boolean isInputIncorrect = true;
         do {
             String input = scn.nextLine();
             switch (input) {
                 case "1":
-                    filtredCars = AppFilter.filterByMake(cars);
+                    AppSort.sortByName(cars);
                     isInputIncorrect = false;
                     break;
 
                 case "2":
-                    filtredCars = AppFilter.filterByPrice(cars);
+                    AppSort.sortByPriceLowToHigh(cars);
                     isInputIncorrect = false;
                     break;
 
                 case "3":
-                    filtredCars = AppFilter.filterByYear(cars);
+                    AppSort.sortByPriceHighToLow(cars);
                     isInputIncorrect = false;
                     break;
 
                 case "4":
-                    filtredCars = AppFilter.filterByFuel(cars);
+                    AppSort.sortByEngine(cars);
                     isInputIncorrect = false;
                     break;
 
                 case "5":
-                    filtredCars = AppFilter.filterByEngine(cars);
+                    AppSort.sortByYear(cars);
                     isInputIncorrect = false;
                     break;
 
@@ -60,7 +59,7 @@ public class ShowAllFilters {
 
         isInputIncorrect = true;
         String input;
-        System.out.println("\nFilter the cars again? ");
+        System.out.println("\nSort the cars again? ");
         System.out.print("Your answer: ");
 
         do {
@@ -78,7 +77,7 @@ public class ShowAllFilters {
 
 
         if (input.equalsIgnoreCase("yes")) {
-            showAllFilters(filtredCars);
+            sortCars(cars, accounts, isAdmin);
         } else {
             System.out.println("What do you want to do?");
             System.out.println("1. Go back");
@@ -98,11 +97,10 @@ public class ShowAllFilters {
             while (isInputIncorrect);
 
             if (input.equalsIgnoreCase("1")) {
-                App.chooseYourOption(cars);
+                App.chooseYourOption(cars, accounts, isAdmin);
             } else {
-                App.rentACar(cars);
+                App.rentACar(cars, isAdmin, accounts);
             }
         }
-
     }
 }
