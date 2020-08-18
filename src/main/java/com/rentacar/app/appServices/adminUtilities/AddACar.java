@@ -56,7 +56,6 @@ public class AddACar {
                 isInputInvalid = false;
             }
             else if (manual.equalsIgnoreCase("no")){
-                isManual = false;
                 isInputInvalid = false;
             }
             else {

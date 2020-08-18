@@ -19,8 +19,7 @@ public class App {
 
 
     public static boolean login(List<Account> accounts) {
-        boolean isAdmin = Login.login(accounts);
-        return isAdmin;
+        return Login.login(accounts);
     }
 
 
@@ -45,37 +44,38 @@ public class App {
                     break;
                 case "5":
                     chooseYourOption(cars, accounts, false);
+                    break;
             }
         } else {
             ChooseYourOption.writeText();
             input = ChooseYourOption.getInput();
             if (input.equalsIgnoreCase("1")) {
-                showAllCars(cars, accounts, isAdmin);
+                showAllCars(cars, accounts, false);
             } else if (input.equalsIgnoreCase("2")) {
-                showAllFilters(cars, accounts, isAdmin);
+                showAllFilters(cars, accounts, false);
             } else {
-                sortCars(cars, accounts, isAdmin);
+                sortCars(cars, accounts, false);
             }
         }
     }
 
     public static List<Car> addACar(List<Car> cars, List<Account> accounts) {
-        cars = AddACar.addACar(cars, accounts);
+        AddACar.addACar(cars, accounts);
         return cars;
     }
 
     public static List<Car> removeACar(List<Car> cars, List<Account> accounts) {
-        cars = RemoveACar.removeACar(cars, accounts);
+        RemoveACar.removeACar(cars, accounts);
         return cars;
     }
 
     public static List<Car> updateAPrice(List<Car> cars, List<Account> accounts) {
-        cars = UpdateAPrice.updateAPrice(cars, accounts);
+        UpdateAPrice.updateAPrice(cars, accounts);
         return cars;
     }
 
     public static List<Account> addAnAdmin(List<Car> cars, List<Account> accounts) {
-        accounts = AddAnAdmin.addAnAdmin(cars, accounts);
+        AddAnAdmin.addAnAdmin(cars, accounts);
         return accounts;
     }
 
